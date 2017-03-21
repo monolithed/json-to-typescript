@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"lib": [
+			"es2017",
+			"dom"
+		],
+
+		"target": "es2017",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"sourceMap": true
+	},
+
+	"exclude": [
+		"./node_modules"
+	]
+}
