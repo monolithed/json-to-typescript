@@ -32,9 +32,9 @@ JsonToTypeScript('X', { x: 0, y: '0' });
 
 ```ts
 export interface X {
-	x?: number;
-	y?: string;
-	[x: string]: any;
+   "x"?: number;
+   "y"?: string;
+   [x: string]: any;
 }
 ```
 
@@ -54,8 +54,8 @@ JsonToTypeScript('X', { x: 0, y: '0' }, (value, property, subject) => {
 
 ```ts
 export interface X {
-	x?: number;
-	[x: string]: any;
+   "x"?: number;
+   [x: string]: any;
 }
 ```
 
