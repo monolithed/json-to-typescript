@@ -1,6 +1,6 @@
 {
 	"name": "json-to-typescript",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Converts a JSON object to TypeScript interfaces",
 	"keywords": ["json", "typescript", "typings", "dts"],
 	"author": "Alexander Abashkin <a.abashkin@corp.mail.ru>",
