@@ -1,6 +1,6 @@
 {
 	"name": "json-to-typescript",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Converts a JSON object to TypeScript interfaces",
 	"keywords": ["json", "typescript", "typings", "dts"],
 	"author": "Alexander Abashkin <a.abashkin@corp.mail.ru>",
@@ -24,7 +24,6 @@
 	"dependencies": {
 		"generate-schema": "^2.3.3",
 		"json-schema-to-typescript": "^3.1.4",
-		"debug": "^2.6.1",
 		"deep-filter": "^1.0.1"
 	},
 
