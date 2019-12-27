@@ -1,21 +1,15 @@
-import * as Filter from 'deep-filter';
-import * as Scheme from 'generate-schema';
+import deepFilter from 'deep-filter';
+import Scheme from 'generate-schema';
 import { compile } from 'json-schema-to-typescript';
 
-export interface IJsonToTypeScript {
-	(
-		name: string,
-		object: object,
-		filter?: (value: any, property: string, subject: object) => boolean
-	): string;
-}
+type Predicate = Parameters<typeof deepFilter>[1];
 
-export default <IJsonToTypeScript>function (name, object, filter) {
+export function transform <Target>(name: string, json: Target, filter?: Predicate): Promise<string> {
 	if (filter) {
-		object = Filter(object, filter);
+		json = deepFilter<Target>(json, filter);
 	}
 
-	let scheme = Scheme.json(name, object);
+	const scheme = Scheme.json(name, json);
 
-	return compile(scheme);
-};
+	return compile(scheme, name);
+}

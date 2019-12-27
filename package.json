@@ -1,35 +1,36 @@
 {
 	"name": "json-to-typescript",
-	"version": "0.0.3",
-	"description": "Converts a JSON object to TypeScript interfaces",
-	"keywords": ["json", "typescript", "typings", "dts"],
-	"author": "Alexander Abashkin <a.abashkin@corp.mail.ru>",
+	"version": "1.0.0",
+	"description": "Converts a JSON object to TypeScript definition",
+	"keywords": [
+		"json",
+		"typescript",
+		"typings",
+		"dts"
+	],
+	"author": "Alexander Abashkin <monolithed@gmail.com>",
 	"license": "MIT",
-
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:monolithed/json-to-typescript.git"
 	},
-
 	"engines": {
-		"node": ">=4.8",
-		"npm": ">=3"
+		"node": ">=10",
+		"npm": ">=6"
 	},
-
 	"scripts": {
-		"test": "node tests",
+		"test": "tsc && mocha tests",
 		"prepublishOnly": "tsc"
 	},
-
 	"dependencies": {
-		"generate-schema": "^2.3.3",
-		"json-schema-to-typescript": "^3.1.4",
-		"deep-filter": "^1.0.1"
+		"generate-schema": "^2.6.0",
+		"json-schema-to-typescript": "^8.0.0",
+		"deep-filter": "^1.0.2"
 	},
-
 	"devDependencies": {
-		"@types/debug": "^0.0.29",
-		"@types/node": "^7.x",
-		"typescript": "^2.2.1"
+		"@types/node": "^13.1.1",
+		"@types/mocha": "^5.2.7",
+		"typescript": "^3.7.4",
+		"mocha": "^6.2.2"
 	}
 }

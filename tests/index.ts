@@ -1,15 +1,23 @@
 import * as assert from 'assert';
-import JsonToTypeScript from '../';
+import {loadFile} from './utils';
+import {transform} from '../';
 
-assert.equal(JsonToTypeScript('X', { x: 0, y: '0' }), `export interface X {
-  "x"?: number;
-  "y"?: string;
-  [k: string]: any;
-}`);
+const SOURCE_FILE = `${__dirname}/./assets/interface.ts`;
 
-assert.equal(JsonToTypeScript('X', { x: 0, y: '0' }, (value, property, subject) => {
-	return property === 'x';
-}), `export interface X {
-  "x"?: number;
-  [k: string]: any;
-}`);
+describe('Convert JSON to TS', () => {
+	it('Basic conversion', async () => {
+		const expected = await loadFile(SOURCE_FILE);
+
+		const json = {
+			'x': 0,
+			'x-1': '1',
+			'y-2': '2'
+		};
+
+		const filter = (value: any) => value !== '2';
+
+		const actual = await transform('X', json, filter);
+
+		assert.equal(actual, expected);
+	});
+});

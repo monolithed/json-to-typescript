@@ -10,52 +10,63 @@ npm install json-to-typescript --save
 
 ### Interface
 
-```ts
-interface IJsonToTypeScript {
-	(
-		name: string,
-		object: object,
-		filter?: (value: any, property: string, subject: object) => boolean
-	): string;
-}
+```typescript
+type Predicate = (value: any, property: string, subject: object) => boolean;
+
+declare function transform (name: string, json: object, filter?: Predicate): Promise<string>;
 ```
 
 ### Usage
 
-```ts
-import JsonToTypeScript from 'json-to-typescript';
+```typescript
+import { transform } from 'json-to-typescript';
 
-JsonToTypeScript('X', { x: 0, y: '0' });
+const json = {
+    'x': 0,
+    'x-1': '1',
+    'y-2': '2'
+};
+
+
+transform('X', json);
 ```
 
 **Output**
 
-```ts
+```typescript
 export interface X {
-   "x"?: number;
-   "y"?: string;
-   [x: string]: any;
+ x?: number;
+ "x-1"?: string;
+ "y-2": string
+ [x: string]: any;
 }
 ```
 
 #### Filter
 
-Use the last param to filter your interface:
 
-```ts
-import JsonToTypeScript from 'json-to-typescript';
+Use the last param to filter your properties:
 
-JsonToTypeScript('X', { x: 0, y: '0' }, (value, property, subject) => {
-	return property === 'x';
-});
+```typescript
+import { transform } from 'json-to-typescript';
+
+const json = {
+    'x': 0,
+    'x-1': '1',
+    'y-2': '2'
+};
+
+const filter = (value: any) => value !== '2';
+
+transform('X', json, filter);
 ```
 
 **Output**
 
-```ts
+```typescript
 export interface X {
-   "x"?: number;
-   [x: string]: any;
+ x?: number;
+ "x-1"?: string;
 }
 ```
 
