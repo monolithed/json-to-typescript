@@ -11,9 +11,17 @@ npm install json-to-typescript --save
 ### Interface
 
 ```typescript
-type Predicate = (value: any, property: string, subject: object) => boolean;
+type Predicate = <Target extends JSONObject>(
+    value: JSONValue,
+    key: string,
+    target: Target
+) => boolean;
 
-declare function transform (name: string, json: object, filter?: Predicate): Promise<string>;
+declare function transform <Target>(
+    name: string,
+    json: Target,
+    filter?: Predicate
+): Promise<string>;
 ```
 
 ### Usage
